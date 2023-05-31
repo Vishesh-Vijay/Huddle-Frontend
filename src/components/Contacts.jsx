@@ -15,7 +15,7 @@ function Contacts() {
   }, [dispatch])
   return (
     <>
-      <div className='flex flex-col -space-y-1 overflow-y-scroll translate-x-4  scrollbar-hide w-[90%]   h-[87vh] pb-10'>
+      <div className='flex flex-col space-y-4 overflow-y-scroll translate-x-4  scrollbar-hide w-[90%]   h-[87vh] pb-10'>
         {
           chats?.length > 0 ? chats?.map((e) => {
             return (
