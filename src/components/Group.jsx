@@ -16,7 +16,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   minWidth: 400,
   bgcolor: 'background.paper',
-
+  borderRadius: '10px',
   boxShadow: 24,
   p: 2
 
@@ -75,7 +75,7 @@ function Group() {
       <button className='mt-1 transition duration-150 ease-in-out' onClick={handleOpen}>
 
         <div className='flex justify-start border-r-2'>
-          <button className='text-[11px] font-normal tracking-wide flex items-center gap-x-1 bg-[#f6f6f6] text-[#1f2228] py-1 -mb-7 mt-2  px-2'>New Group <BsPlusLg /></button>
+          <button className='text-[11px] rounded-lg font-semibold tracking-wide flex items-center gap-x-1 bg-[#f6f6f6] text-[#1f2228] py-1 -mb-7 mt-2  px-2'>New Group <BsPlusLg /></button>
         </div>
       </button>
       <Modal
@@ -83,20 +83,21 @@ function Group() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        
       >
         <Box sx={style}>
           <h5 className='text-[18px] text-[#111b21] font-medium text-center'>Create A Group</h5>
 
           <form onSubmit={(e) => e.preventDefault()} className='flex flex-col gap-y-3 mt-3'>
 
-            <input onChange={(e) => setChatName(e.target.value)} className="border-[#c4ccd5] border-[1px] text-[13.5px] py-[4px] px-2 w-[100%]" type="text" name="chatName" placeholder="Group Name" required />
-            <input onChange={handleFormSearch} className="border-[#c4ccd5] border-[1px] text-[13.5px] py-[4px] px-2 w-[100%]" type="text" name="users" placeholder="add users" />
+            <input onChange={(e) => setChatName(e.target.value)} className="border-[#c4ccd5] rounded-lg border-[1px] text-[13.5px] py-[4px] px-2 w-[100%]" type="text" name="chatName" placeholder="Group Name" required />
+            <input onChange={handleFormSearch} className="border-[#c4ccd5] rounded-lg border-[1px] text-[13.5px] py-[4px] px-2 w-[100%]" type="text" name="users" placeholder="Add Users" />
             <div className='flex -mt-2'>
 
               {
                 selectedUser?.map((e) => {
                   return (
-                    <button key={e} onClick={() => deleteSelected(e)} className='flex items-center gap-x-1 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400'>
+                    <button key={e} onClick={() => deleteSelected(e)} className='flex items-center gap-x-1 bg-green-100 text-green-800 text-xs font-medium rounded-lg mr-2 px-2.5 py-0.5 dark:bg-gray-700 dark:text-green-400 border border-green-400'>
                       <span >{e.name}</span>
                       <RxCross2 />
                     </button>
@@ -109,7 +110,7 @@ function Group() {
             <Search isLoading={isLoading} handleClick={handleClick} search={search} searchResults={searchResults} />
 
             <div className='flex justify-end mt-3'>
-              <button onClick={handleSubmit} className='bg-[#0086ea] text-[#fff] text-[15px] font-medium px-2 py-1 tracking-wide' type='submit'>Create</button>
+              <button onClick={handleSubmit} className='bg-green-500 rounded-lg text-[#fff] text-[15px] font-medium px-2 py-1 tracking-wide' type='submit'>Create</button>
             </div>
           </form>
 

@@ -68,7 +68,7 @@ function Login() {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId: process.env.REACT_APP_CLIENT_ID,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         scope: ''
       });
     };
@@ -178,7 +178,7 @@ function Login() {
               </button>
               <p className='ml-40  md:ml-36 pl-4 font-bold'>/</p>
               <GoogleLogin
-                clientId={process.env.REACT_APP_CLIENT_ID}
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 render={(renderProps) => (
                   <button
                     onClick={renderProps.onClick}

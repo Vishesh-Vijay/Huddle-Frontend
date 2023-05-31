@@ -194,7 +194,7 @@ function Regsiter() {
               <p className="text-center font-bold">/</p>
 
               <GoogleLogin
-                clientId={process.env.REACT_APP_CLIENT_ID}
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 render={(renderProps) => (
                   <button
                     onClick={renderProps.onClick}
