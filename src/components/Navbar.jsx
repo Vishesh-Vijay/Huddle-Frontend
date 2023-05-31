@@ -37,7 +37,7 @@ export default function Navbar() {
     <div className="bg-black text-white py-4 px-8 w-full fixed flex items-center justify-between">
       <div className="flex items-center">
         <img src={logo} alt="" className="w-6 h-6" />
-        <h1 className="text-2xl font-bold ml-2">ChatNet</h1>
+        <h1 className="text-2xl font-bold ml-2">Huddle</h1>
       </div>
       <Dropdown menu={{ items }} trigger={["hover"]}>
         <a onClick={(e) => e.preventDefault()} href=''>

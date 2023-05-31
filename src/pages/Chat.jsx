@@ -100,86 +100,116 @@ function Chat(props) {
   }
   return (
     <>
-      {
-        activeChat ?
-          <div className={props.className}>
-            <div className='flex justify-between items-center px-5 bg-[#ffff] w-[100%]'>
-              <div className='flex items-center gap-x-[10px]'>
-                <div className='flex flex-col items-start justify-center'>
-                  <h5 className='text-[17px] text-[#2b2e33] font-bold tracking-wide'>{getChatName(activeChat, activeUser)}</h5>
-                  {/* <p className='text-[11px] text-[#aabac8]'>Last seen 5 min ago</p> */}
-                </div>
-              </div>
-              <div>
-                <Model />
+      {activeChat ? (
+        <div className={props.className}>
+          <div className="flex justify-between items-center px-5 bg-[#ffff] mt-4 pb-2  w-[100%]">
+            <div className="flex items-center gap-x-[10px]">
+              <div className="flex flex-col items-start justify-center ">
+                <h5 className="text-[17px] text-[#2b2e33] items-center font-bold tracking-wide">
+                  {getChatName(activeChat, activeUser)}
+                </h5>
               </div>
             </div>
-            <div className='scrollbar-hide w-[100%] h-[70vh] md:h-[66vh] lg:h-[69vh] flex flex-col overflow-y-scroll p-4'>
+            <div>
+              <Model />
+            </div>
+          </div>
+          <div className='flex justify-center'>
+            <div className="scrollbar-hide w-[95%] h-[70vh] md:h-[66vh] lg:h-[69vh] flex flex-col overflow-y-scroll  p-4 border-2 border-black rounded-2xl">
               <MessageHistory typing={isTyping} messages={messages} />
-              <div className='ml-7 -mb-10'>
-                {
-                  isTyping ?
-                    <Typing width="100" height="100" /> : ""
-                }
-
-              </div>
-            </div>
-            <div className='absolute left-[20%] bottom-[8%]'>
-              {
-                showPicker && <Picker data={data} onEmojiSelect={(e) => setMessage(message + e.native)} />
-              }
-              <div className='border-[1px] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] h-[50px] lg:w-[800px] rounded-t-[10px]'>
-
-                <form onKeyDown={(e) => keyDownFunction(e)} onSubmit={(e) => e.preventDefault()}>
-                  <input onChange={(e) => {
-                    setMessage(e.target.value)
-                    if (!socketConnected) return
-                    if (!typing) {
-                      setTyping(true)
-                      socket.emit('typing', activeChat._id)
-                    }
-                    let lastTime = new Date().getTime()
-                    var time = 3000
-                    setTimeout(() => {
-                      var timeNow = new Date().getTime()
-                      var timeDiff = timeNow - lastTime
-                      if (timeDiff >= time && typing) {
-                        socket.emit("stop typing", activeChat._id)
-                        setTyping(false)
-                      }
-                    }, time)
-                  }} className='focus:outline-0 w-[100%] bg-[#f8f9fa]' type="text" name="message" placeholder="Enter message" value={message} />
-                </form>
-
-              </div>
-
-              <div className='border-x-[1px] border-b-[1px] bg-[#f8f9fa] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] lg:w-[800px] rounded-b-[10px] h-[50px]'>
-                {/* {
-                  isTyping ? <div>Loading</div> : ""
-                } */}
-                <div className='flex justify-between items-start'>
-
-                  <div className='cursor-pointer' onClick={() => setShowPicker(!showPicker)}>
-
-                    {showPicker ? <BsFillEmojiSmileFill className='w-[20px] h-[20px] text-[#ffb02e] border-[black]' /> : <BsEmojiSmile className='w-[20px] h-[20px]' />}
-                  </div>
-                  <button onClick={(e) => keyDownFunction(e)} className='bg-green-500 border-[2px] border-[#d4d4d4] text-[14px] px-2 py-[3px] text-[#000000] font-medium rounded-[7px] -mt-1'>Send</button>
-                </div>
-              </div>
-            </div>
-          </div> :
-          <div className={props.className}>
-            <div className='relative'>
-              <div className='absolute top-[40vh] left-[44%] flex flex-col items-center justify-center gap-y-3'>
-                <img className='w-[50px] h-[50px] rounded-[25px]' alt="User profile" src={activeUser.profilePic?activeUser?.profilePic:user} />
-                <h3 className='text-[#111b21] text-[20px] font-medium tracking-wider'>Welcome <span className='text-[#166e48] text-[19px] font-bold'> {activeUser.name}</span></h3>
+              <div className="ml-7 -mb-10">
+                {isTyping ? <Typing width="100" height="100" /> : ""}
               </div>
             </div>
           </div>
 
-      }
+          <div className="absolute w-full left-[2.5%] bottom-[6%]">
+            {showPicker && (
+              <Picker
+                data={data}
+                onEmojiSelect={(e) => setMessage(message + e.native)}
+              />
+            )}
+            <div className="border-[1px] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] h-[50px] lg:w-[95%] rounded-t-[10px] ">
+              <form
+                onKeyDown={(e) => keyDownFunction(e)}
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    if (!socketConnected) return;
+                    if (!typing) {
+                      setTyping(true);
+                      socket.emit("typing", activeChat._id);
+                    }
+                    let lastTime = new Date().getTime();
+                    var time = 3000;
+                    setTimeout(() => {
+                      var timeNow = new Date().getTime();
+                      var timeDiff = timeNow - lastTime;
+                      if (timeDiff >= time && typing) {
+                        socket.emit("stop typing", activeChat._id);
+                        setTyping(false);
+                      }
+                    }, time);
+                  }}
+                  className="focus:outline-0 w-[100%] bg-[#f8f9fa]"
+                  type="text"
+                  name="message"
+                  placeholder="Enter message"
+                  value={message}
+                />
+              </form>
+            </div>
+
+            <div className="border-x-[1px] border-b-[1px] bg-[#f8f9fa] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] lg:w-[95%] rounded-b-[10px] h-[50px]">
+              {/* {
+                  isTyping ? <div>Loading</div> : ""
+                } */}
+              <div className="flex justify-between items-start">
+                <div
+                  className="cursor-pointer"
+                  onClick={() => setShowPicker(!showPicker)}
+                >
+                  {showPicker ? (
+                    <BsFillEmojiSmileFill className="w-[20px] h-[20px] text-[#ffb02e] border-[black]" />
+                  ) : (
+                    <BsEmojiSmile className="w-[20px] h-[20px]" />
+                  )}
+                </div>
+                <button
+                  onClick={(e) => keyDownFunction(e)}
+                  className="bg-green-500 border-[2px] border-[#d4d4d4] text-[14px] px-2 py-[3px] text-[#000000] font-medium rounded-[7px] -mt-1"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={props.className}>
+          <div className="relative">
+            <div className="absolute top-[40vh] left-[44%] flex flex-col items-center justify-center gap-y-3">
+              <img
+                className="w-[50px] h-[50px] rounded-[25px]"
+                alt="User profile"
+                src={activeUser.profilePic ? activeUser?.profilePic : user}
+              />
+              <h3 className="text-[#111b21] text-[20px] font-medium tracking-wider">
+                Welcome{" "}
+                <span className="text-[#166e48] text-[19px] font-bold">
+                  {" "}
+                  {activeUser.name}
+                </span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      )}
     </>
-  )
+  );
 }
 
 export default Chat

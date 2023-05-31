@@ -49,22 +49,22 @@ function Home() {
     }
     searchChange()
   }, [search])
-  // useEffect(() => {
-  //   const isValid = async () => {
-  //     const data = await validUser()
+  useEffect(() => {
+    const isValid = async () => {
+      const data = await validUser()
 
-  //     const user = {
-  //       id: data?.user?._id,
-  //       email: data?.user?.email,
-  //       profilePic: data?.user?.profilePic,
-  //       bio: data?.user?.bio,
-  //       name: data?.user?.name
-  //     }
-  //     dispatch(setActiveUser(user))
-  //   }
-  //   isValid()
+      const user = {
+        id: data?.user?._id,
+        email: data?.user?.email,
+        profilePic: data?.user?.profilePic,
+        bio: data?.user?.bio,
+        name: data?.user?.name
+      }
+      dispatch(setActiveUser(user))
+    }
+    isValid()
 
-  // }, [dispatch, activeUser])
+  }, [dispatch, activeUser])
 
 
   return (
@@ -159,7 +159,7 @@ function Home() {
                   >
                     <img
                       className="w-[28px] h-[28px] rounded-[25px]"
-                      src={activeUser?.profilePic?activeUser?.profilePic:user}
+                      src={activeUser?.profilePic}
                       alt=""
                     />
                     <IoIosArrowDown

@@ -25,7 +25,7 @@ function Contacts() {
                 }}
                 key={e._id}
                 className={`flex items-center justify-between rounded-xl sm:gap-x-1 md:gap-x-1 mt-5 ${
-                  activeChat._id === e._id ? "bg-[#20a36b]" : "bg-[#20a36b]"
+                  activeChat._id === e._id ? "bg-white" : "bg-white"
                 } cursor-pointer  py-4 px-3`}
               >
                 <div className="flex items-center gap-x-3 sm:gap-x-1 md:gap-x-3">
