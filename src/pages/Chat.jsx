@@ -102,10 +102,10 @@ function Chat(props) {
     <>
       {activeChat ? (
         <div className={props.className}>
-          <div className="flex justify-between items-center px-5 bg-[#ffff] mt-4 pb-2  w-[100%]">
+          <div className="flex justify-between items-center px-8 bg-[#ffff] mt-4 pb-2  w-[100%]">
             <div className="flex items-center gap-x-[10px]">
               <div className="flex flex-col items-start justify-center ">
-                <h5 className="text-[17px] text-[#2b2e33] items-center font-bold tracking-wide">
+                <h5 className="text-[24px] text-[#2b2e33] items-center font-bold tracking-wide">
                   {getChatName(activeChat, activeUser)}
                 </h5>
               </div>
